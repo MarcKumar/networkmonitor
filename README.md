@@ -1,6 +1,6 @@
 # Networkmonitor - Internet Failure Detection and Powercycle
 
-![Networkmonitor - Internet Failure Detection and Powercycle](link_to_image)
+[Networkmonitor - Internet Failure Detection and Powercycle](https://hub.docker.com/r/marckumar/networkmonitor)
 
 Welcome to the Networkmonitor GitHub project for Internet Failure Detection and Powercycle automation! This Go program allows you to monitor your router's internet connection by checking a specified URL and automatically perform a power cycle on a Tasmota-compatible plug to resolve network issues.
 
