@@ -1,4 +1,3 @@
-```
 # Networkmonitor - Internet Failure Detection and Powercycle
 
 ![Networkmonitor - Internet Failure Detection and Powercycle](link_to_image)
@@ -77,8 +76,3 @@ We welcome contributions to the Networkmonitor project! If you have any suggesti
 ## License
 
 This project is licensed under the [MIT License](link_to_license). For more information, please see the `LICENSE` file.
-
----
-
-Thank you for your interest in our Networkmonitor - Internet Failure Detection and Powercycle project. If you have any questions or need assistance, feel free to contact us. Happy monitoring and using!
-```
