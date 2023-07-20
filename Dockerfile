@@ -1,13 +1,8 @@
-FROM golang:1.19
+FROM golang as compiler 
 
 # create a build dir
 RUN mkdir /build
 WORKDIR /build
-
-ENV CGO_ENABLED=0
-ENV check_interval=5m
-ENV check_url=https://www.google.com
-ENV tasmota_ip=127.0.0.1
 
 # copy module dependencies
 COPY go.mod .
@@ -18,4 +13,13 @@ COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /networkmonitor
 
-CMD ["/networkmonitor"]
+FROM scratch 
+
+COPY --from=compiler /networkmonitor .
+
+ENV CGO_ENABLED=0
+ENV check_interval=1h
+ENV check_url=https://www.google.com
+ENV tasmota_ip=127.0.0.1 
+
+CMD ["./networkmonitor"]

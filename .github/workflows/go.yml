@@ -7,10 +7,7 @@ name: CICD
 on:
   push:
     branches:
-    - master
-  pull_request:
-    branches:
-    - master
+      - master
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,24 +18,21 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-    
-    # Setup Go
-    - name: Setup Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: '1.20.0' # The Go version to download (if necessary) and use.
-    
-    # Install all the dependencies
-    - name: Install dependencies
-      run: |
-        go version
-        go get -u golang.org/x/lint/golint
-        
-    # Run build of the application
-    - name: Run build
-      run: go build .
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Install all the dependencies
+      - name: Install dependencies
+        run: |
+          go version
+          go get -u golang.org/x/lint/golint
+
+      # Run build of the application
+      - name: Run build
+        run: go build .
 
   # The "deploy" workflow
   deploy:
@@ -47,13 +41,13 @@ jobs:
     needs: [build] # Only run this workflow when "build" workflow succeeds
     if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' }} # Only run this workflow if it is master branch on push event
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    # Deploy to Docker registry
-    - name: Deploy to Docker registry
-      uses: docker/build-push-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        repository: marckumar/networkmonitor
-        tag_with_ref: true
+      # Deploy to Docker registry
+      - name: Deploy to Docker registry
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: marckumar/networkmonitor
+          tag_with_ref: true
