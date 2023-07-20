@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           go version
-          go get -u golang.org/x/lint/golint
+          go install -u golang.org/x/lint/golint@latest
 
       # Run build of the application
       - name: Run build
