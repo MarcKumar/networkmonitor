@@ -16,6 +16,7 @@ type Config struct {
 }
 
 func main() {
+	// Disable SSL verification for Docker
 	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	config := getConfig()
 

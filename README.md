@@ -58,7 +58,7 @@ You have two options for installation:
   docker pull marckumar/networkmonitor
   ```
 
-  -The container requires less than 5MB of RAM to run efficiently, making it lightweight and suitable for resource-constrained environments.
+- The container requires less than 3MB of RAM to run efficiently, making it lightweight and suitable for resource-constrained environments.
 
 ## Configuration
 
@@ -95,12 +95,8 @@ We welcome contributions to the Networkmonitor project! If you have any suggesti
 
 ## License
 
-This project is licensed under the [MIT License](https://opensource.org/license/mit/). For more information, please see the `LICENSE` file.
+This project is licensed under the [MIT License](https://github.com/MarcKumar/networkmonitor/blob/master/MIT_LICENSE.txt). For more information, please see the `LICENSE` file.
 
 ---
 
 Thank you for your interest in our Networkmonitor - Internet Failure Detection and Powercycle project. If you have any questions or need assistance, feel free to contact us. Happy monitoring and using!
-
-```
-
-```
