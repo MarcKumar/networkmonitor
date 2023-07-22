@@ -13,6 +13,7 @@ type Config struct {
 	check_interval time.Duration
 	check_url      string
 	tasmota_ip     string
+	log_success    bool
 }
 
 func main() {
@@ -27,9 +28,9 @@ func main() {
 
 	for {
 		ok, duration := checkConnection(config.check_url)
-		if ok {
+		if ok && config.log_success {
 			fmt.Printf("%s Got valid response in %s\n", getTime(), duration)
-		} else {
+		} else if !ok {
 			fmt.Printf("%s Got invalid response in %s execute power-cycle\n", getTime(), duration)
 			doPowerCycle(config.tasmota_ip)
 		}
@@ -54,6 +55,12 @@ func getConfig() (config Config) {
 		config.tasmota_ip = os.Getenv("tasmota_ip")
 	} else {
 		flag.StringVar(&config.tasmota_ip, "tasmota_ip", "127.0.0.1", "URL to check connection")
+	}
+
+	if os.Getenv("log_success") != "" {
+		config.log_success = os.Getenv("log_success") == "true" || os.Getenv("log_success") == "1"
+	} else {
+		flag.BoolVar(&config.log_success, "log_success", false, "Log successful connections")
 	}
 
 	flag.Parse()
