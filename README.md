@@ -65,7 +65,7 @@ You have two options for installation:
 Networkmonitor can be configured using command-line arguments. Before running the program, you need to set the following parameters:
 
 - `check_url`: The URL you want to use for internet connection checks.
-- `check_interval`: The time interval (in seconds) for checking the internet connection.
+- `check_interval`: The time interval for checking the internet connection. Examples: "5s" (5 seconds), "1m" (1 minute), "2h30m" (2 hours and 30 minutes).
 - `tasmota_device_ip`: The IP address of your Tasmota-compatible plug.
 
 ## Usage
@@ -79,7 +79,7 @@ You can run the program with command-line arguments as follows:
 If you are using Docker, you can pass the parameters using environment variables:
 
 ```
-docker run --name networkmonitor_container -e check_url=your_url -e check_interval=your_interval -e tasmota_ip=your_device_ip your_username/networkmonitor
+docker run --name networkmonitor_container -e check_url=your_url -e check_interval=your_interval -e tasmota_ip=your_device_ip marckumar/networkmonitor
 ```
 
 The program will now monitor the internet connection by checking the specified URL and perform a power cycle on the Tasmota-compatible plug when an internet failure is detected.
