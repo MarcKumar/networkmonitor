@@ -22,7 +22,7 @@ jobs:
         run: docker build --pull --rm -f "Dockerfile" -t marckumar/networkmonitor:latest "."
 
       - name: Create Release
-        uses: action/create-release@v1
+        uses: actions/create-release@v1
         id: create_release
         with: 
           draft: false
