@@ -28,10 +28,7 @@ jobs:
     needs: [build] # Only run this workflow when "build" workflow succeeds
     if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' }} # Only run this workflow if it is master branch on push event
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Create Release
-        uses: ncipollo/release-action@v1          
+      - uses: actions/checkout@v4   
       
       - name: Login to Docker Hub
         uses: docker/login-action@v2
