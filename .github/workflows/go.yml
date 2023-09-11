@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build the Docker image
         run: docker build --pull --rm -f "Dockerfile" -t marckumar/networkmonitor:latest "."
 
@@ -28,6 +28,8 @@ jobs:
     needs: [build] # Only run this workflow when "build" workflow succeeds
     if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' }} # Only run this workflow if it is master branch on push event
     steps:
+      - uses: actions/checkout@v4
+      
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
