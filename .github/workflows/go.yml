@@ -21,18 +21,6 @@ jobs:
       - name: Build the Docker image
         run: docker build --pull --rm -f "Dockerfile" -t marckumar/networkmonitor:latest "."
 
-      - name: Create Release
-        uses: actions/create-release@v1
-        id: create_release
-        with: 
-          draft: false
-          prerelease: false
-          release_name: ${{ steps.version.outputs.version }}
-          tag_name: ${{ github.ref }}
-          body_path: CHANGELOG.md
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-
   # The "deploy" workflow
   deploy:
     # The type of runner that the job will run on
